@@ -10,8 +10,8 @@ const SignUpFooter = () => {
   }
 
   return(
-    <View className="mt-10 items-center justify-center">
-      <Text className="text-white mb-5">¿Ya cuentas con una cuenta?</Text>
+    <View className="mt-5 items-center justify-center">
+      <Text className="text-white mb-2">¿Ya cuentas con una cuenta?</Text>
       <CustomButton
         title="Iniciar sesion"
         color="orange"
