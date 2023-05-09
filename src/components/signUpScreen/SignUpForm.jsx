@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { View } from "react-native"
 
 import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
 import CustomTextInput from "../common/CustomTextInput";
 import CustomButton from "../common/CustomButton";
 
-const initialParams = { email: '', password: '' };
+const initialParams = { email: '', password: '', password_confirmation: '' };
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const [formParams, setFormParams] = useState(initialParams);
 
   const handleOnChange = (name, value) => {
@@ -48,6 +48,18 @@ const LoginForm = () => {
           value={formParams.password}
         />
       </View>
+      <View className="flex flex-col">
+        <CustomTextLabel
+          title="Password Confirmation:"
+        />
+        <CustomTextInput
+          placeholder='* * * * * * *'
+          secureTextEntry={true}
+          name="password_confirmation"
+          onChange={handleOnChange}
+          value={formParams.password_confirmation}
+        />
+      </View>
       <View className="items-center mt-5">
         <CustomButton
           title="Iniciar sesión"
@@ -59,4 +71,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm;
+export default SignUpForm;

@@ -1,6 +1,6 @@
 import { TextInput } from "react-native"
 
-const CustomTextInput = ({name, placeholder, secureTextEntry, onChange}) => {
+const CustomTextInput = ({name, value, placeholder, secureTextEntry, onChange}) => {
 
   const handleOnChange = (value) => {
     onChange(name, value);
@@ -12,6 +12,7 @@ const CustomTextInput = ({name, placeholder, secureTextEntry, onChange}) => {
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       onChangeText={handleOnChange}
+      value={value}
     />
   )
 }
