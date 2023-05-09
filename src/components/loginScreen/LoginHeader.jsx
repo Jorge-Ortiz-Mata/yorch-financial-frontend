@@ -7,7 +7,8 @@ const LoginHeader = () => {
     <View className="items-center my-5">
       <MaterialCommunityIcons name="finance" size={80} color="white" />
       <Text className="text-white font-black text-3xl mt-5">Yorch Financial</Text>
-      <Text className="text-white font-semibold my-1 text-lg">Login</Text>
+      <Text className="text-white font-bold mt-4 text-xl">¡Hola!</Text>
+      <Text className="text-white font-semibold mb-4">Inicia sesión para continuar.</Text>
     </View>
   )
 }

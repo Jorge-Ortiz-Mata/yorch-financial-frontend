@@ -1,17 +1,23 @@
-import { Pressable, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 
-const CustomButton = ({title, color}) => {
+const CustomButton = ({title, color, onPress}) => {
   let btnClass;
 
-  if(color === 'red') btnClass = 'bg-red-600 p-2 rounded';
-  if(color === 'green') btnClass = 'bg-green-600 p-2 rounded';
+  if(color === 'red') btnClass = 'bg-red-600 py-2 px-5 rounded';
+  if(color === 'green') btnClass = 'bg-green-600 py-2 px-5 rounded';
+  if(color === 'orange') btnClass = 'bg-orange-600 py-2 px-5 rounded';
+
+  const handleOnPress = () => {
+    onPress();
+  }
 
   return(
-    <Pressable
+    <TouchableOpacity
       className={btnClass}
+      onPress={handleOnPress}
     >
       <Text className="text-white font-bold text-sm">{title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 
