@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { View } from "react-native"
+import { View, Alert } from "react-native"
+
+import { signUpFormValidation } from "../../validations/formValidation";
 
 import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
@@ -17,9 +19,14 @@ const SignUpForm = () => {
     ))
   }
 
-  const handleFormSubmit = () => {
-    console.log(formParams);
-    setFormParams(initialParams);
+  const handleFormSubmit = async () => {
+    try {
+      const response = await signUpFormValidation(formParams);
+      if(response?.error) return Alert.alert(response.title, response.message, [{text: 'Accept', style: 'cancel'}])
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return(
@@ -62,7 +69,7 @@ const SignUpForm = () => {
       </View>
       <View className="items-center mt-5">
         <CustomButton
-          title="Iniciar sesión"
+          title="Registrarme"
           color="green"
           onPress={handleFormSubmit}
         />

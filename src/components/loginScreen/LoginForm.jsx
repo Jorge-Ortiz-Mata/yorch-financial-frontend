@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { View, Alert } from "react-native";
+
+import { loginFormValidation } from "../../validations/formValidation";
 
 import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
@@ -17,9 +19,14 @@ const LoginForm = () => {
     ))
   }
 
-  const handleFormSubmit = () => {
-    console.log(formParams);
-    setFormParams(initialParams);
+  const handleFormSubmit = async () => {
+    try {
+      const response = await loginFormValidation(formParams);
+      if(response?.error) return Alert.alert(response.title, response.message, [{text: 'Accept', style: 'cancel'}])
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return(
@@ -38,7 +45,7 @@ const LoginForm = () => {
       </View>
       <View className="flex flex-col">
         <CustomTextLabel
-          title="Password:"
+          title="Contraseña:"
         />
         <CustomTextInput
           placeholder='* * * * * * *'
