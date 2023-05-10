@@ -21,10 +21,10 @@ const Index = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        // setTimeout(async () => {
+        setTimeout(async () => {
           const response = await AsyncStorage.getItem('yorchFinancialUser');
           setUser(response);
-        // }, 1500);
+        }, 1500);
 
       } catch (error) {
         console.log(error);
