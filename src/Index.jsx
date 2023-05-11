@@ -7,16 +7,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { stackOptions } from "./layouts/stackOptions";
 import { tabOptions } from "./layouts/tabOptions";
 
+import DashboardScreen from "./screens/DashboardScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+
 import ModalScreen from './screens/ModalScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from "./screens/SignUpScreen";
-import DashboardScreen from "./screens/DashboardScreen";
+
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const Index = () => {
   const [user, setUser] = useState(undefined);
+
+  // AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -39,7 +46,14 @@ const Index = () => {
   if(user) return(
     <NavigationContainer>
       <Tab.Navigator initialRouteName="DashboardScreen" screenOptions={tabOptions}>
-        <Tab.Screen name="DashboardScreen" component={DashboardScreen} />
+        <Tab.Screen name="DashboardScreen" component={DashboardScreen} options={{
+          title: 'Dashboard',
+          tabBarIcon: () => <MaterialCommunityIcons name="view-dashboard-edit-outline" size={32} color="white" />
+        }} />
+        <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{
+          title: 'Profile',
+          tabBarIcon: () => <FontAwesome5 name="user-edit" size={26} color="white" />
+        }} />
       </Tab.Navigator>
     </NavigationContainer>
   )
