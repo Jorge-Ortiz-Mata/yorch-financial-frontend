@@ -8,6 +8,7 @@ import { stackOptions } from "./layouts/stackOptions";
 import { tabOptions } from "./layouts/tabOptions";
 
 import DashboardScreen from "./screens/DashboardScreen";
+import IncomeScreen from "./screens/IncomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 import ModalScreen from './screens/ModalScreen';
@@ -16,6 +17,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,7 +25,7 @@ const Stack = createNativeStackNavigator();
 const Index = () => {
   const [user, setUser] = useState(undefined);
 
-  // AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
+  AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -47,13 +49,20 @@ const Index = () => {
     <NavigationContainer>
       <Tab.Navigator initialRouteName="DashboardScreen" screenOptions={tabOptions}>
         <Tab.Screen name="DashboardScreen" component={DashboardScreen} options={{
-          title: 'Dashboard',
-          tabBarIcon: () => <MaterialCommunityIcons name="view-dashboard-edit-outline" size={32} color="white" />
-        }} />
+            title: 'Dashboard',
+            tabBarIcon: () => <MaterialCommunityIcons name="view-dashboard-edit-outline" size={28} color="white" />
+          }}
+        />
+        <Tab.Screen name="IncomeScreen" component={IncomeScreen} options={{
+            title: 'Ingresos',
+            tabBarIcon: () => <MaterialIcons name="attach-money" size={28} color="white" />
+          }}
+        />
         <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{
-          title: 'Profile',
-          tabBarIcon: () => <FontAwesome5 name="user-edit" size={26} color="white" />
-        }} />
+            title: 'Profile',
+            tabBarIcon: () => <FontAwesome5 name="user-edit" size={22} color="white" />
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   )
