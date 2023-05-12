@@ -34,4 +34,36 @@ export const incomesData = [
     name: 'Venta de celulares',
     price: 512.90
   },
-]
+];
+
+export const expensesData = [
+  {
+    id: 1,
+    name: 'Comida y cena en restaurante',
+    price: 23.53
+  },
+
+  {
+    id: 2,
+    name: 'Mensualidad de la escuela',
+    price: 52.12
+  },
+
+  {
+    id: 3,
+    name: 'Cursos de capacitación - programación',
+    price: 63.00
+  },
+
+  {
+    id: 4,
+    name: 'Vuelo redondo a Inglaterra',
+    price: 254.86
+  },
+
+  {
+    id: 5,
+    name: 'Reservación de hotel en Irlanda',
+    price: 151.23
+  },
+];

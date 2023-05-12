@@ -18,6 +18,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import ExpenseScreen from "./screens/ExpenseScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -56,6 +57,11 @@ const Index = () => {
         <Tab.Screen name="IncomeScreen" component={IncomeScreen} options={{
             title: 'Ingresos',
             tabBarIcon: () => <MaterialIcons name="attach-money" size={28} color="white" />
+          }}
+        />
+        <Tab.Screen name="ExpenseScreen" component={ExpenseScreen} options={{
+            title: 'Gastos',
+            tabBarIcon: () => <MaterialIcons name="money-off" size={28} color="white" />
           }}
         />
         <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{
