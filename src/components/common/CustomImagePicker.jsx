@@ -9,9 +9,9 @@ const CustomImagePicker = ({name, onSelectImage}) => {
 
   useEffect(() => {
     if(imageUri){
-      setImagePreview(<Image source={{ uri: imageUri }} className="w-28 h-28 rounded-full mb-5" />)
+      setImagePreview(<Image source={{ uri: imageUri }} className="w-40 h-40 rounded-full mb-5" />)
     } else {
-      setImagePreview(<Image source={require("../../../assets/icon.png")} className="w-20 h-20 rounded-full mb-5" />)
+      setImagePreview(<Image source={require("../../../assets/icon.png")} className="w-40 h-40 rounded-full mb-5" />)
     }
   }, [imageUri]);
 

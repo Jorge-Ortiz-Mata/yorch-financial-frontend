@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomTextLabel from './CustomTextLabel';
 
-const CustomDatePicker = () => {
+const CustomDatePicker = ({name, onChange}) => {
   const [dateSelected, setDateSelected] = useState(new Date(1683931385416));
   const [displatyDate, setDisplatyDate] = useState(false);
 
@@ -13,8 +13,9 @@ const CustomDatePicker = () => {
 
   const handleChange = (event) => {
     setDisplatyDate(false);
-    const dateEntered = event.nativeEvent.timestamp;
-    setDateSelected(new Date(dateEntered));
+    const dateEntered = new Date(event.nativeEvent.timestamp);
+    setDateSelected(dateEntered);
+    onChange(name, dateEntered)
   };
 
   return (
