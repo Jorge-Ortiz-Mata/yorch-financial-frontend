@@ -1,27 +1,41 @@
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, FontAwesome5, Feather, Ionicons } from '@expo/vector-icons';
 
 import OptionItem from "./OptionItem";
 
 const OptionsList = () => {
+  const navigation = useNavigation();
+
+  const changeScreen = () => {
+    navigation.navigate('EditProfileScreen');
+  }
 
   return(
     <View className="w-full">
       <OptionItem
         name="Editar Perfil"
-        icon={<Feather name="settings" size={24} color="white" />}
+        color="blue"
+        icon={<Feather name="settings" size={24} color="blue" />}
+        onPressOption={changeScreen}
       />
       <OptionItem
         name="Invitar a un amigo"
-        icon={<FontAwesome5 name="users" size={24} color="white" />}
+        color="green"
+        icon={<FontAwesome5 name="users" size={24} color="green" />}
+        onPressOption={() => {}}
       />
       <OptionItem
         name="Evaluar aplicacion"
-        icon={<FontAwesome name="star" size={24} color="white" />}
+        color="yellow"
+        icon={<FontAwesome name="star" size={24} color="yellow" />}
+        onPressOption={() => {}}
       />
       <OptionItem
         name="Cerrar sesión"
-        icon={<Ionicons name="arrow-back-circle" size={24} color="white" />}
+        color="red"
+        icon={<Ionicons name="arrow-back-circle" size={24} color="red" />}
+        onPressOption={() => {}}
       />
     </View>
   )

@@ -7,8 +7,8 @@
     "icon": "./assets/LogoAppYorchFinance.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/splash-yorch-financial.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -25,6 +25,15 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La aplicación requiere acceso para acceder a las imagenes de tu dispositivo",
+          "cameraPermission": "La aplicación requiere acceso a la camara de tu dispositivo"
+        }
+      ]
+    ]
   }
 }

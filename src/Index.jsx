@@ -10,6 +10,7 @@ import { tabOptions } from "./layouts/tabOptions";
 import DashboardScreen from "./screens/DashboardScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import EditProfileScreen from "./screens/EditProfileScreen";
 
 import ModalScreen from './screens/ModalScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -26,7 +27,7 @@ const Stack = createNativeStackNavigator();
 const Index = () => {
   const [user, setUser] = useState(undefined);
 
-  AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
+  // AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,10 +45,8 @@ const Index = () => {
     fetchUser();
   }, []);
 
-  if(user === undefined) return <ModalScreen />
-
-  if(user) return(
-    <NavigationContainer>
+  const TabNavigatorNavigation = () => {
+    return(
       <Tab.Navigator initialRouteName="DashboardScreen" screenOptions={tabOptions}>
         <Tab.Screen name="DashboardScreen" component={DashboardScreen} options={{
             title: 'Dashboard',
@@ -70,6 +69,17 @@ const Index = () => {
           }}
         />
       </Tab.Navigator>
+    )
+  }
+
+  if(user === undefined) return <ModalScreen />
+
+  if(user) return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="DashboardTabNavigation" component={TabNavigatorNavigation} options={{headerShown: false}} />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 
