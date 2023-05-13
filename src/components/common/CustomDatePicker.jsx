@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomTextLabel from './CustomTextLabel';
 
 const CustomDatePicker = ({name, onChange}) => {
-  const [dateSelected, setDateSelected] = useState(new Date(1683931385416));
+  const [dateSelected, setDateSelected] = useState(new Date());
   const [displatyDate, setDisplatyDate] = useState(false);
 
   const openDatePicker = () => {

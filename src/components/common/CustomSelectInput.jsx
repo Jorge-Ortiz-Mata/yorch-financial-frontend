@@ -1,7 +1,11 @@
 import { View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-const CustomSelectInput = ({name, data, onChange}) => {
+const CustomSelectInput = ({name, onChange}) => {
+  const optionsSelect = [
+    { label: 'Masculino', value: 'male' },
+    { label: 'Femenino', value: 'female' }
+  ];
 
   const handleChange = (value) => {
     onChange(name, value)
@@ -11,7 +15,7 @@ const CustomSelectInput = ({name, data, onChange}) => {
     <View className="mb-5">
       <RNPickerSelect
         onValueChange={handleChange}
-        items={data}
+        items={optionsSelect}
         style={pickerStyle}
         useNativeAndroidPickerStyle={false}
       />

@@ -19,10 +19,6 @@ const initialState = {
 
 const EditProfileForm = () => {
   const [formParams, setFormParams] = useState(initialState);
-  const optionsSelect = [
-    { label: 'Masculino', value: 'male' },
-    { label: 'Femenino', value: 'female' }
-  ]
 
   const handleChange = (name, value) => {
     setFormParams(prevState => (
@@ -76,7 +72,6 @@ const EditProfileForm = () => {
         <CustomSelectInput
           name="sex"
           onChange={handleChange}
-          data={optionsSelect}
         />
 
         <CustomDatePicker
