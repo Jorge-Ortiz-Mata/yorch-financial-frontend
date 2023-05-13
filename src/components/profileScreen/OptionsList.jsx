@@ -7,17 +7,13 @@ import OptionItem from "./OptionItem";
 const OptionsList = () => {
   const navigation = useNavigation();
 
-  const changeScreen = () => {
-    navigation.navigate('EditProfileScreen');
-  }
-
   return(
     <View className="w-full">
       <OptionItem
         name="Editar Perfil"
         color="blue"
         icon={<Feather name="settings" size={24} color="blue" />}
-        onPressOption={changeScreen}
+        onPressOption={() => navigation.navigate('EditProfileScreen')}
       />
       <OptionItem
         name="Invitar a un amigo"
@@ -29,7 +25,7 @@ const OptionsList = () => {
         name="Evaluar aplicacion"
         color="yellow"
         icon={<FontAwesome name="star" size={24} color="yellow" />}
-        onPressOption={() => {}}
+        onPressOption={() => navigation.navigate('SurveyScreen')}
       />
       <OptionItem
         name="Cerrar sesión"

@@ -20,6 +20,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ExpenseScreen from "./screens/ExpenseScreen";
+import SurveyScreen from "./screens/SurveyScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -76,9 +77,10 @@ const Index = () => {
 
   if(user) return(
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="DashboardTabNavigation">
         <Stack.Screen name="DashboardTabNavigation" component={TabNavigatorNavigation} options={{headerShown: false}} />
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+        <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
