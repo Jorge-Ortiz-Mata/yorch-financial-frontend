@@ -19,7 +19,7 @@ const OptionsList = () => {
         name="Invitar a un amigo"
         color="green"
         icon={<FontAwesome5 name="users" size={24} color="green" />}
-        onPressOption={() => {}}
+        onPressOption={() => navigation.navigate('InviteScreen')}
       />
       <OptionItem
         name="Evaluar aplicacion"

@@ -21,6 +21,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import ExpenseScreen from "./screens/ExpenseScreen";
 import SurveyScreen from "./screens/SurveyScreen";
+import InviteScreen from "./screens/InviteScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -36,7 +37,7 @@ const Index = () => {
         setTimeout(async () => {
           const response = await AsyncStorage.getItem('yorchFinancialUser');
           setUser(response);
-        }, 1500);
+        }, 1000);
 
       } catch (error) {
         console.log(error);
@@ -81,6 +82,7 @@ const Index = () => {
         <Stack.Screen name="DashboardTabNavigation" component={TabNavigatorNavigation} options={{headerShown: false}} />
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
+        <Stack.Screen name="InviteScreen" component={InviteScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
