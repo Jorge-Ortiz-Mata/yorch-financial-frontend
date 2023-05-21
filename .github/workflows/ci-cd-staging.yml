@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   deployment:
+    name: Expo Deployment
     uses: ./.github/workflows/expo-deployment.yml
     with:
       environment: staging

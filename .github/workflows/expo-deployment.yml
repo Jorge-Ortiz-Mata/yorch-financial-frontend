@@ -32,5 +32,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # - name: Expo Android Build APK
-      #   run: eas build --profile preview --platform android
+      - name: Expo Android Build APK
+        run: eas build --profile preview --platform android
