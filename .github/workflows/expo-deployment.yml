@@ -4,38 +4,34 @@ on:
       environment:
         required: true
         type: string
-      # expo-token:
-      #   required: true
-      #   type: string
-
-
+      token:
+        required: true
+        type: string
 
 jobs:
   expo-staging-deployment:
     name: Staging - Deployment
     runs-on: ubuntu-latest
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
 
-      - name: Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ inputs.expo-token }}
+      # - name: Setup EAS
+      #   uses: expo/expo-github-action@v8
+      #   with:
+      #     eas-version: latest
+      #     token: ${{ inputs.expo-token }}
 
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
 
       - name: Display secrets
-        run: echo "${{ env.EXPO_TOKEN }}"
+        run: echo "${{ inputs.token }}"
 
       # - name: Create android apk preview
       #   uses: expo/expo-github-action/preview@v8
