@@ -33,4 +33,6 @@ jobs:
         run: npm install
 
       - name: Expo Android Build APK
-        run: eas build --profile preview --platform android
+        uses: expo/expo-github-action/preview@v8
+        with:
+          command: eas update --auto
