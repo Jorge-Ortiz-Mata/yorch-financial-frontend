@@ -4,6 +4,9 @@ on:
       environment:
         required: true
         type: string
+      expo-token:
+        required: true
+        type: string
 
 jobs:
   expo-staging-deployment:
@@ -22,15 +25,15 @@ jobs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+          token: ${{ inputs.expo-token }}
 
       - name: Install dependencies
         run: npm install
 
       - name: Display secrets
-        run: echo "${{ secrets.EXPO_TOKEN }}"
+        run: echo "${{ inputs.expo-token }}"
 
-      - name: Create android apk preview
-        uses: expo/expo-github-action/preview@v8
-        with:
-          command: eas build --profile preview --platform android
+      # - name: Create android apk preview
+      #   uses: expo/expo-github-action/preview@v8
+      #   with:
+      #     command: eas build --profile preview --platform android
