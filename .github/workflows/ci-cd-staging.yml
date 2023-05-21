@@ -12,4 +12,5 @@ jobs:
     uses: ./.github/workflows/expo-deployment.yml
     with:
       environment: staging
+    secrets:
       token: ${{ secrets.EXPO_TOKEN }}

@@ -4,9 +4,8 @@ on:
       environment:
         required: true
         type: string
+    secrets:
       token:
-        required: true
-        type: string
 
 jobs:
   expo-staging-deployment:
@@ -31,7 +30,7 @@ jobs:
       #   run: npm install
 
       - name: Display secrets
-        run: echo "${{ inputs.token }}"
+        run: echo "${{ secrets.token }}"
 
       # - name: Create android apk preview
       #   uses: expo/expo-github-action/preview@v8
