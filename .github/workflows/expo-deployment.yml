@@ -5,11 +5,6 @@ on:
         required: true
         type: string
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   expo-staging-deployment:
     name: Staging - Deployment
@@ -32,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Expo Android Build APK
+      - name: Create preview
         uses: expo/expo-github-action/preview@v8
         with:
           command: eas update --auto
