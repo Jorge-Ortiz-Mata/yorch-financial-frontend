@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { stackOptions } from "./layouts/stackOptions";
@@ -28,20 +28,13 @@ const Stack = createNativeStackNavigator();
 
 const Index = () => {
   const [user, setUser] = useState(undefined);
-
-  // AsyncStorage.setItem('yorchFinancialUser', 'fakeUserToken');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        setTimeout(async () => {
-          const response = await AsyncStorage.getItem('yorchFinancialUser');
-          setUser(response);
-        }, 1000);
-
-      } catch (error) {
-        console.log(error);
-      }
+      const userStorage = await AsyncStorage.getItem('yorchFinancialUser');
+      setUser(userStorage);
+      setIsLoading(false);
     }
 
     fetchUser();
@@ -74,7 +67,7 @@ const Index = () => {
     )
   }
 
-  if(user === undefined) return <ModalScreen />
+  if(isLoading) return <ModalScreen />
 
   if(user) return(
     <NavigationContainer>
@@ -87,7 +80,7 @@ const Index = () => {
     </NavigationContainer>
   )
 
-  if(user === null) return(
+  return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen" screenOptions={stackOptions}>
         <Stack.Screen name='LoginScreen' component={LoginScreen} options={{headerShown: false}} />
