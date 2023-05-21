@@ -14,10 +14,10 @@ jobs:
       - name: Show Credentials
         run: echo "${{ secrets.EXPO_TOKEN }}"
 
-  deployment:
-    name: Expo Deployment
-    uses: ./.github/workflows/expo-deployment.yml
-    with:
-      environment: staging
-      expo-token: ${{ secrets.EXPO_TOKEN }}
-    needs: credentials
+  # deployment:
+  #   name: Expo Deployment
+  #   uses: ./.github/workflows/expo-deployment.yml
+  #   with:
+  #     environment: staging
+  #     # expo-token: ${{ secrets.EXPO_TOKEN }}
+  #   needs: credentials
