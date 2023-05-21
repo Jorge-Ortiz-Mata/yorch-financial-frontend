@@ -1,0 +1,18 @@
+name: Expo - CI & CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deployment:
+    uses: ./.github/workflows/expo-deployment.yml
+    with:
+      environment: staging
