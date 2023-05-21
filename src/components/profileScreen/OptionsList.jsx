@@ -1,11 +1,26 @@
 import { View } from "react-native";
+import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome, FontAwesome5, Feather, Ionicons } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { userActions } from "../../store/userSlice";
+import { userLogOut } from "../../services/userService";
 import OptionItem from "./OptionItem";
 
 const OptionsList = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const closeSession = async () => {
+    try {
+      await userLogOut();
+      await AsyncStorage.removeItem('yorchFinancialUser');
+      dispatch(userActions.setUser(null));
+    } catch(error) {
+      console.log(error.response.data)
+    }
+  }
 
   return(
     <View className="w-full">
@@ -31,7 +46,7 @@ const OptionsList = () => {
         name="Cerrar sesión"
         color="red"
         icon={<Ionicons name="arrow-back-circle" size={24} color="red" />}
-        onPressOption={() => {}}
+        onPressOption={closeSession}
       />
     </View>
   )

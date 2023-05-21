@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { View, Alert } from "react-native"
+import { View, Alert } from "react-native";
+import { useDispatch } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { userActions } from "../../store/userSlice";
 import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
 import CustomTextInput from "../common/CustomTextInput";
@@ -13,6 +15,7 @@ import { userSignUp } from "../../services/userService";
 const initialParams = { email: '', password: '', password_confirmation: '' };
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [formParams, setFormParams] = useState(initialParams);
   const handleOnChange = (name, value) => {
     setFormParams(prevState => (
@@ -27,10 +30,11 @@ const SignUpForm = () => {
 
       const response = await userSignUp({user: formParams});
       await AsyncStorage.setItem('yorchFinancialUser', response?.data?.auth_token);
+      dispatch(userActions.setUser(response?.data?.auth_token));
 
     } catch (error) {
       const { errors } = error.response.data;
-      console.log(errors);
+      Alert.alert('Error del servidor', errors.email[0], [{text: 'Accept', style: 'cancel'}]);
     }
   }
 

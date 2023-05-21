@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { View, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { userLogIn } from "../../services/userService";
 import { loginFormValidation } from "../../validations/formValidation";
+import { userActions } from "../../store/userSlice";
 
 import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
@@ -11,6 +15,7 @@ import CustomButton from "../common/CustomButton";
 const initialParams = { email: '', password: '' };
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [formParams, setFormParams] = useState(initialParams);
 
   const handleOnChange = (name, value) => {
@@ -21,11 +26,15 @@ const LoginForm = () => {
 
   const handleFormSubmit = async () => {
     try {
-      const response = await loginFormValidation(formParams);
-      if(response?.error) return Alert.alert(response.title, response.message, [{text: 'Accept', style: 'cancel'}])
+      const responseValidation = await loginFormValidation(formParams);
+      if(responseValidation?.error) return Alert.alert(response.title, response.message, [{text: 'Accept', style: 'cancel'}])
 
+      const response = await userLogIn(formParams);
+      await AsyncStorage.setItem('yorchFinancialUser', response?.data?.auth_token);
+      dispatch(userActions.setUser(response?.data?.auth_token));
     } catch (error) {
-      console.log(error);
+      const { errors } = error.response.data;
+      Alert.alert('Error del servidor', errors[0], [{text: 'Accept', style: 'cancel'}]);
     }
   }
 

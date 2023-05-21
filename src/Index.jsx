@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,12 +8,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { stackOptions } from "./layouts/stackOptions";
 import { tabOptions } from "./layouts/tabOptions";
 
+import { userActions } from "./store/userSlice";
+
 import DashboardScreen from "./screens/DashboardScreen";
 import IncomeScreen from "./screens/IncomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
 
-import ModalScreen from './screens/ModalScreen';
+import ModalScreen from "./screens/ModalScreen";
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from "./screens/SignUpScreen";
 
@@ -27,18 +30,21 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const Index = () => {
-  const [user, setUser] = useState(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  const userToken = useSelector(state => state.userSlice.user);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userStorage = await AsyncStorage.getItem('yorchFinancialUser');
-      setUser(userStorage);
+      const userTokenStorage = await AsyncStorage.getItem('yorchFinancialUser');
+      dispatch(userActions.setUser(userTokenStorage));
       setIsLoading(false);
     }
 
     fetchUser();
-  }, []);
+  }, [userToken]);
+
+  if(isLoading) return <ModalScreen />
 
   const TabNavigatorNavigation = () => {
     return(
@@ -67,9 +73,7 @@ const Index = () => {
     )
   }
 
-  if(isLoading) return <ModalScreen />
-
-  if(user) return(
+  if(userToken) return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName="DashboardTabNavigation">
         <Stack.Screen name="DashboardTabNavigation" component={TabNavigatorNavigation} options={{headerShown: false}} />
