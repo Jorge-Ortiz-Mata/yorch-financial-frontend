@@ -6,8 +6,7 @@ on:
     branches:
       - main
 
-env:
-  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
 
 jobs:
   deployment:
@@ -15,4 +14,3 @@ jobs:
     uses: ./.github/workflows/expo-deployment.yml
     with:
       environment: staging
-      expo-token: ${{ env.EXPO_TOKEN }}

@@ -4,14 +4,18 @@ on:
       environment:
         required: true
         type: string
-      expo-token:
-        required: true
-        type: string
+      # expo-token:
+      #   required: true
+      #   type: string
+
+
 
 jobs:
   expo-staging-deployment:
     name: Staging - Deployment
     runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -31,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Display secrets
-        run: echo "${{ inputs.expo-token }}"
+        run: echo "${{ env.EXPO_TOKEN }}"
 
       # - name: Create android apk preview
       #   uses: expo/expo-github-action/preview@v8
