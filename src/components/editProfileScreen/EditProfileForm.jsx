@@ -7,9 +7,12 @@ import CustomButton from "../common/CustomButton";
 import CustomImagePicker from "../common/CustomImagePicker";
 import CustomDatePicker from "../common/CustomDatePicker";
 import CustomSelectInput from "../common/CustomSelectInput";
+import CustomTextArea from "../common/CustomTextArea";
 
 const initialState = {
   name: '',
+  job_title: '',
+  summary: '',
   paternal_surname: '',
   maternal_surname: '',
   sex: '',
@@ -50,6 +53,15 @@ const EditProfileForm = () => {
           onChange={handleChange}
         />
 
+        <CustomTextLabel title="Puesto actual" />
+        <CustomTextInput
+          name="job_title"
+          value={formParams.job_title}
+          placeholder="Ingeniero en robótica"
+          secureTextEntry={false}
+          onChange={handleChange}
+        />
+
         <CustomTextLabel title="Apellido Paterno" />
         <CustomTextInput
           name="paternal_surname"
@@ -76,6 +88,15 @@ const EditProfileForm = () => {
 
         <CustomDatePicker
           name="date_of_birth"
+          onChange={handleChange}
+        />
+
+        <CustomTextLabel title="Acerca de mi" />
+        <CustomTextArea
+          name="summary"
+          value={formParams.summary}
+          placeholder="Soy introvertido y me encantan las peliculas de accion. Además..."
+          secureTextEntry={false}
           onChange={handleChange}
         />
 

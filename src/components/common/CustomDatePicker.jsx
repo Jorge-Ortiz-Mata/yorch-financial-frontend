@@ -23,7 +23,7 @@ const CustomDatePicker = ({name, onChange}) => {
       <CustomTextLabel title="Fecha de nacimiento" />
       <Text
         onPress={openDatePicker}
-        className={`bg-gray-100 text-gray-800 font-bold ${ Platform.OS === 'ios' ? "py-5" : "py-3" } px-2 rounded mb-5`}
+        className="bg-gray-100 text-gray-800 py-5 px-5 rounded mb-5"
       >
         {dateSelected.toLocaleDateString()}
       </Text>

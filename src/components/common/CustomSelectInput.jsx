@@ -1,45 +1,27 @@
+import { useState } from 'react';
 import { View } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import { Picker as SelectPicker } from '@react-native-picker/picker';
 
 const CustomSelectInput = ({name, onChange}) => {
-  const optionsSelect = [
-    { label: 'Masculino', value: 'male' },
-    { label: 'Femenino', value: 'female' }
-  ];
+  const [selectedSex, setSelectedSex] = useState();
 
   const handleChange = (value) => {
-    onChange(name, value)
+    setSelectedSex(value);
+    onChange(name, value);
   }
 
   return(
-    <View className="mb-5">
-      <RNPickerSelect
-        onValueChange={handleChange}
-        items={optionsSelect}
-        style={pickerStyle}
-        useNativeAndroidPickerStyle={false}
-      />
+    <View className="mb-5 border bg-white rounded text-sm">
+      <SelectPicker
+        style={{color: '#808080'}}
+        selectedValue={selectedSex}
+        onValueChange={handleChange}>
+        <SelectPicker.Item label="Default" value="DEFAULT" />
+        <SelectPicker.Item label="Masculino" value="MASCULINO" />
+        <SelectPicker.Item label="Femenino" value="FEMALE" />
+      </SelectPicker>
     </View>
   )
 }
 
 export default CustomSelectInput;
-
-const pickerStyle = {
-  inputIOS: {
-      color: '#000000',
-      paddingHorizontal: 10,
-      backgroundColor: '#ffffff',
-      borderRadius: 5,
-  },
-  placeholder: {
-      color: '#000000',
-    },
-  inputAndroid: {
-      color: '#000000',
-      paddingHorizontal: 7,
-      paddingVertical: 4,
-      backgroundColor: '#ffffff',
-      borderRadius: 5,
-  },
-};

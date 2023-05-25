@@ -1,5 +1,4 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, Text } from "react-native";
 import HeaderProfile from '../components/profileScreen/HeaderProfile';
 import OptionsList from '../components/profileScreen/OptionsList';
 import UserProfit from '../components/profileScreen/UserProfit';

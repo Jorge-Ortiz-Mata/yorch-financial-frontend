@@ -8,7 +8,7 @@ const CustomTextArea = ({name, value, placeholder, secureTextEntry, onChange}) =
 
   return(
     <TextInput
-      className={`bg-gray-100 w-full text-gray-800 font-bold ${ Platform.OS === 'ios' ? "py-3" : "py-1" } px-2 rounded mb-5`}
+      className="bg-gray-100 w-full text-gray-800 py-3 px-5 rounded mb-5"
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       onChangeText={handleOnChange}

@@ -1,6 +1,6 @@
+import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { YORCH_FINANCIAL_BACKEND_URL } from '@env';
-import axios from "axios";
 
 export const dummyData = async () => {
   return await axios.get(`${YORCH_FINANCIAL_BACKEND_URL}/v1/articles/dummy`);
