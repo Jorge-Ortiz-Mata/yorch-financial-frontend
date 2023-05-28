@@ -15,8 +15,12 @@ const DashboardScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProfile();
+      console.log(response.data)
       dispatch(profileActions.updateProfile(response?.data));
-      dispatch(profileActions.updateAvatar(`${response?.data?.url}${response?.data?.avatar}`));
+
+      if(response.data.avatar){
+        dispatch(profileActions.updateAvatar(`${response?.data?.url}${response?.data?.avatar}`));
+      }
     }
 
     fetchData();
