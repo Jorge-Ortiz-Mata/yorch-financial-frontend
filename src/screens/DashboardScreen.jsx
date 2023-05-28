@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 
-import { getProfile } from '../services/profileService';
+import { getProfile, uploadAvatar } from '../services/profileService';
 import { profileActions } from '../store/profileSlice';
 
 import WelcomeMessage from "../components/dashboard/WelcomeMessage";
@@ -15,7 +15,8 @@ const DashboardScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProfile();
-      dispatch(profileActions.updateProfile(response.data));
+      dispatch(profileActions.updateProfile(response?.data));
+      dispatch(profileActions.updateAvatar(`${response?.data?.url}${response?.data?.avatar}`));
     }
 
     fetchData();

@@ -19,8 +19,8 @@ const OptionsList = () => {
       await userLogOut();
       await AsyncStorage.removeItem('yorchFinancialUser');
       dispatch(userActions.setUser(null));
-      dispatch(profileActions.updateAvatar({}));
-      dispatch(profileActions.profileAvatar(null));
+      dispatch(profileActions.updateProfile({}));
+      dispatch(profileActions.updateAvatar(''));
     } catch(error) {
       console.log(error)
     }

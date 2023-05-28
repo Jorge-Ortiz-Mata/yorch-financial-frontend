@@ -17,7 +17,7 @@ const AvatarUser = () => {
       if (res === 'canceled') return;
 
       const response = await uploadAvatar(res);
-      dispatch(profileActions.updateAvatar(response.data))
+      dispatch(profileActions.updateAvatar(response.data.avatar))
     } catch (error) {
       console.log(error);
     }

@@ -23,7 +23,7 @@ export const profileSlice = createSlice({
     },
 
     updateAvatar(state, action){
-      state.profileAvatar = action.payload.avatar;
+      state.profileAvatar = action.payload;
     }
   }
 })
