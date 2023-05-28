@@ -1,30 +1,17 @@
-import { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import { getProfile } from "../../services/profileService";
 import AvatarUser from "./AvatarUser";
 import NameUser from "./NameUser";
+import { useSelector } from "react-redux";
+import ProfileSummary from "./ProfileSummary";
 
 const HeaderProfile = () => {
-  const [profile, setProfile] = useState({});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getProfile();
-      setProfile(response?.data);
-    }
-
-    fetchData();
-  }, []);
+  const profile = useSelector(state => state.profileSlice.profile);
 
   return(
-    <View className="w-full">
-      <View className="flex-row w-full my-5">
-        <AvatarUser />
-        <NameUser profile={profile} />
-      </View>
-      <Text className="text-white text-center">
-        {profile.summary}
-      </Text>
+    <View className="w-full items-center justify-center">
+      <AvatarUser />
+      <NameUser profile={profile} />
+      <ProfileSummary summary={profile.summary} />
     </View>
   )
 }

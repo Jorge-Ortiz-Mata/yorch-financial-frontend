@@ -17,7 +17,7 @@ const CustomSelectInput = ({name, onChange}) => {
         selectedValue={selectedSex}
         onValueChange={handleChange}>
         <SelectPicker.Item label="Default" value="DEFAULT" />
-        <SelectPicker.Item label="Masculino" value="MASCULINO" />
+        <SelectPicker.Item label="Masculino" value="MALE" />
         <SelectPicker.Item label="Femenino" value="FEMALE" />
       </SelectPicker>
     </View>

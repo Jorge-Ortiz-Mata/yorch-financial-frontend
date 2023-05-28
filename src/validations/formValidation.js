@@ -49,3 +49,11 @@ export const signUpFormValidation = async (params) => {
 
   return;
 }
+
+export const profileFormValidation = async (formParams) => {
+  if(formParams.sex == 'DEFAULT'){
+    return { error: true, title: "Sexo default", message: "El atributo sexo no puede ser definido como Default" }
+  }
+
+  return;
+}

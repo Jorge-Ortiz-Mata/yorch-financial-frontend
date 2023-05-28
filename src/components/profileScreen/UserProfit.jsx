@@ -4,7 +4,7 @@ import UserProfitBox from "./UserProfitBox";
 const UserProfit = () => {
 
   return(
-    <View className="flex-row w-full items-center justify-evenly mt-16 mb-10">
+    <View className="flex-row w-full items-center justify-evenly my-10">
       <UserProfitBox
         title="Ingresos"
         number="252.96"

@@ -5,6 +5,8 @@ import { FontAwesome, FontAwesome5, Feather, Ionicons } from '@expo/vector-icons
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { userActions } from "../../store/userSlice";
+import { profileActions } from "../../store/profileSlice";
+
 import { userLogOut } from "../../services/userService";
 import OptionItem from "./OptionItem";
 
@@ -17,8 +19,10 @@ const OptionsList = () => {
       await userLogOut();
       await AsyncStorage.removeItem('yorchFinancialUser');
       dispatch(userActions.setUser(null));
+      dispatch(profileActions.updateAvatar({}));
+      dispatch(profileActions.profileAvatar(null));
     } catch(error) {
-      console.log(error.response.data)
+      console.log(error)
     }
   }
 

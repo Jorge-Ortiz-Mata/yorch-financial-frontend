@@ -15,7 +15,6 @@ const WelcomeMessage = () => {
     fetchUser();
   }, [])
 
-
   return(
     <View className="mx-5">
       <Text className="text-white font-bold text-xl">Hola: {user}</Text>

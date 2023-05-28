@@ -25,10 +25,10 @@ const LoginForm = () => {
   }
 
   const handleFormSubmit = async () => {
-    try {
-      const responseValidation = await loginFormValidation(formParams);
-      if(responseValidation?.error) return Alert.alert(response.title, response.message, [{text: 'Accept', style: 'cancel'}])
+    const responseValidation = await loginFormValidation(formParams);
+    if(responseValidation?.error) return Alert.alert(responseValidation.title, responseValidation.message, [{text: 'Accept', style: 'cancel'}]);
 
+    try {
       const response = await userLogIn(formParams);
       await AsyncStorage.setItem('yorchFinancialUser', response?.data?.auth_token);
       dispatch(userActions.setUser(response?.data?.auth_token));

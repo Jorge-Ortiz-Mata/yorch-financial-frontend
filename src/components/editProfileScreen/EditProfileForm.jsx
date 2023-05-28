@@ -1,27 +1,24 @@
 import { useState } from "react";
-import { View, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import { View, ScrollView, Alert } from "react-native";
+
+import { profileFormValidation } from "../../validations/formValidation";
+import { profileActions } from "../../store/profileSlice";
+import { saveProfile } from "../../services/profileService";
 
 import CustomTextInput from "../common/CustomTextInput";
 import CustomTextLabel from "../common/CustomTextLabel";
 import CustomButton from "../common/CustomButton";
-import CustomImagePicker from "../common/CustomImagePicker";
 import CustomDatePicker from "../common/CustomDatePicker";
 import CustomSelectInput from "../common/CustomSelectInput";
 import CustomTextArea from "../common/CustomTextArea";
 
-const initialState = {
-  name: '',
-  job_title: '',
-  summary: '',
-  paternal_surname: '',
-  maternal_surname: '',
-  sex: '',
-  date_of_birth: '',
-  avatar: '',
-}
-
 const EditProfileForm = () => {
-  const [formParams, setFormParams] = useState(initialState);
+  const profile = useSelector(state => state.profileSlice.profile);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const [formParams, setFormParams] = useState(profile);
 
   const handleChange = (name, value) => {
     setFormParams(prevState => (
@@ -29,21 +26,24 @@ const EditProfileForm = () => {
     ))
   }
 
-  const handleSubmit = () => {
-    console.log(formParams);
+  const handleSubmit = async () => {
+    try {
+      const responseValidation = await profileFormValidation(formParams);
+      if(responseValidation?.error) return Alert.alert(responseValidation.title, responseValidation.message, [{text: 'Accept', style: 'cancel'}])
+
+      const response = await saveProfile({ profile: formParams });
+      dispatch(profileActions.updateProfile(response.data.profile));
+      Alert.alert('Perfil actualizado', 'Tu perfil ha sido actualizado correctamente', [{text: 'Accept'}])
+      navigation.navigate('DashboardTabNavigation');
+
+    } catch (error) {
+      Alert.alert('Error en el servidor', 'Hubo un problema en el servidor, por favor intente más tarde', [{text: 'Accept', style: 'cancel'}])
+    }
   }
 
   return(
     <ScrollView className="w-full">
-      <View className="mx-5">
-
-        <View className="items-center my-5">
-          <CustomImagePicker
-            name="avatar"
-            onSelectImage={handleChange}
-          />
-        </View>
-
+      <View className="m-5">
         <CustomTextLabel title="Nombre(s)" />
         <CustomTextInput
           name="name"
@@ -53,19 +53,10 @@ const EditProfileForm = () => {
           onChange={handleChange}
         />
 
-        <CustomTextLabel title="Puesto actual" />
-        <CustomTextInput
-          name="job_title"
-          value={formParams.job_title}
-          placeholder="Ingeniero en robótica"
-          secureTextEntry={false}
-          onChange={handleChange}
-        />
-
         <CustomTextLabel title="Apellido Paterno" />
         <CustomTextInput
-          name="paternal_surname"
-          value={formParams.paternal_surname}
+          name="paternal_name"
+          value={formParams.paternal_name}
           placeholder="Pérez"
           secureTextEntry={false}
           onChange={handleChange}
@@ -73,8 +64,8 @@ const EditProfileForm = () => {
 
         <CustomTextLabel title="Apellido Materno" />
         <CustomTextInput
-          name="maternal_surname"
-          value={formParams.maternal_surname}
+          name="maternal_name"
+          value={formParams.maternal_name}
           placeholder="López"
           secureTextEntry={false}
           onChange={handleChange}
@@ -88,6 +79,15 @@ const EditProfileForm = () => {
 
         <CustomDatePicker
           name="date_of_birth"
+          onChange={handleChange}
+        />
+
+        <CustomTextLabel title="Puesto actual" />
+        <CustomTextInput
+          name="job_title"
+          value={formParams.job_title}
+          placeholder="Ingeniero en robótica"
+          secureTextEntry={false}
           onChange={handleChange}
         />
 

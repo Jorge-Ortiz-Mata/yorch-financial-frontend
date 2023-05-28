@@ -1,9 +1,25 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
+
+import { getProfile } from '../services/profileService';
+import { profileActions } from '../store/profileSlice';
+
 import WelcomeMessage from "../components/dashboard/WelcomeMessage";
 import BoxSection from "../components/dashboard/BoxSection";
 
 const DashboardScreen = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getProfile();
+      dispatch(profileActions.updateProfile(response.data));
+    }
+
+    fetchData();
+  }, []);
 
   return(
     <LinearGradient colors={['#000000', '#212A3E']} className="flex-1 justify-center">
