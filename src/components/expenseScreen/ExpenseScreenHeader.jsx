@@ -1,13 +1,13 @@
 import ExpenseScreenTitle from "./ExpenseScreenTitle";
 import ExpenseLineChart from "./ExpenseLineChart";
-import { xMonthValuesChart, yMonthValuesChart, xDayValuesChart, yDayValuesChart,  } from "../../store/dummyData";
+// import { xMonthValuesChart, yMonthValuesChart, xDayValuesChart, yDayValuesChart,  } from "../../store/dummyData";
 
 const ExpenseScreenHeader = () => {
 
   return(
     <>
       <ExpenseScreenTitle />
-      <ExpenseLineChart
+      {/* <ExpenseLineChart
         title="Gastos de los ultimos 5 meses"
         xValues={xMonthValuesChart}
         yValues={yMonthValuesChart}
@@ -16,7 +16,7 @@ const ExpenseScreenHeader = () => {
         title="Gastos de los ultimos 5 dias"
         xValues={xDayValuesChart}
         yValues={yDayValuesChart}
-      />
+      /> */}
     </>
   )
 }

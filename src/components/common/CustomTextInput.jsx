@@ -8,7 +8,7 @@ const CustomTextInput = ({name, value, placeholder, secureTextEntry, onChange}) 
 
   return(
     <TextInput
-      className="bg-gray-100 w-full text-gray-800 py-3 px-5 rounded mb-5 text-base"
+      className="bg-gray-100 w-full text-gray-800 py-3 px-5 rounded text-base"
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       onChangeText={handleOnChange}

@@ -7,7 +7,7 @@ const IncomeItem = ({item}) => {
       <View className="border border-gray-600 w-5/6 p-4 rounded flex-row justify-between items-center">
         <View>
           <Text className="text-white font-bold w-11/12">
-            {item.name}
+            {item.title}
           </Text>
           <Text className="text-white font-semibold text-xs mt-2">
             ID: {item.id}
@@ -15,7 +15,7 @@ const IncomeItem = ({item}) => {
         </View>
         <View>
           <Text className="text-white font-bold">
-            ${item.price} MXN
+            ${item.quantity} MXN
           </Text>
         </View>
       </View>
