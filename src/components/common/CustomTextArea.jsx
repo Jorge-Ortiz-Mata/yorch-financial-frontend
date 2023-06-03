@@ -1,4 +1,4 @@
-import { TextInput, Platform } from "react-native";
+import { TextInput } from "react-native";
 
 const CustomTextArea = ({name, value, placeholder, secureTextEntry, onChange}) => {
 

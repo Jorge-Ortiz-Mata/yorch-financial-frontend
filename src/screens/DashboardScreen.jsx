@@ -15,7 +15,6 @@ const DashboardScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProfile();
-      console.log(response.data)
       dispatch(profileActions.updateProfile(response?.data));
 
       if(response.data.avatar){

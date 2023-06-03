@@ -11,12 +11,14 @@ import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
 import CustomTextInput from "../common/CustomTextInput";
 import CustomButton from "../common/CustomButton";
+import CustomLoadingLabel from "../common/CustomLoadingLabel";
 
 const initialParams = { email: '', password: '' };
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [formParams, setFormParams] = useState(initialParams);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnChange = (name, value) => {
     setFormParams(prevState => (
@@ -25,6 +27,7 @@ const LoginForm = () => {
   }
 
   const handleFormSubmit = async () => {
+    setIsLoading(true);
     const responseValidation = await loginFormValidation(formParams);
     if(responseValidation?.error) return Alert.alert(responseValidation.title, responseValidation.message, [{text: 'Accept', style: 'cancel'}]);
 
@@ -35,6 +38,8 @@ const LoginForm = () => {
     } catch (error) {
       const { errors } = error.response.data;
       Alert.alert('Error del servidor', errors[0], [{text: 'Accept', style: 'cancel'}]);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -64,13 +69,17 @@ const LoginForm = () => {
           value={formParams.password}
         />
       </View>
-      <View className="items-center mt-5">
-        <CustomButton
-          title="Iniciar sesión"
-          color="green"
-          onPress={handleFormSubmit}
-        />
-      </View>
+      {
+        isLoading
+        ? <CustomLoadingLabel />
+        : <View className="items-center mt-5">
+            <CustomButton
+              title="Iniciar sesión"
+              color="green"
+              onPress={handleFormSubmit}
+            />
+          </View>
+      }
     </CustomUserForm>
   )
 }

@@ -4,6 +4,9 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { stackOptions } from "./layouts/stackOptions";
 import { tabOptions } from "./layouts/tabOptions";
@@ -12,6 +15,7 @@ import { userActions } from "./store/userSlice";
 
 import DashboardScreen from "./screens/DashboardScreen";
 import IncomeScreen from "./screens/IncomeScreen";
+import NewIncomeScreen from "./screens/NewIncomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import EditProfileScreen from "./screens/EditProfileScreen";
 
@@ -19,9 +23,6 @@ import ModalScreen from "./screens/ModalScreen";
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from "./screens/SignUpScreen";
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import ExpenseScreen from "./screens/ExpenseScreen";
 import SurveyScreen from "./screens/SurveyScreen";
 import InviteScreen from "./screens/InviteScreen";
@@ -80,6 +81,7 @@ const Index = () => {
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
         <Stack.Screen name="InviteScreen" component={InviteScreen} />
+        <Stack.Screen name="NewIncomeScreen" component={NewIncomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

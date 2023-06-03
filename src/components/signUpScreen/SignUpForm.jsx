@@ -8,6 +8,7 @@ import CustomUserForm from "../common/CustomUserForm";
 import CustomTextLabel from "../common/CustomTextLabel";
 import CustomTextInput from "../common/CustomTextInput";
 import CustomButton from "../common/CustomButton";
+import CustomLoadingLabel from "../common/CustomLoadingLabel";
 
 import { signUpFormValidation } from "../../validations/formValidation";
 import { userSignUp } from "../../services/userService";
@@ -15,8 +16,10 @@ import { userSignUp } from "../../services/userService";
 const initialParams = { email: '', password: '', password_confirmation: '' };
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const [formParams, setFormParams] = useState(initialParams);
+
   const handleOnChange = (name, value) => {
     setFormParams(prevState => (
       { ...prevState, [name]: value }
@@ -24,6 +27,8 @@ const SignUpForm = () => {
   }
 
   const handleFormSubmit = async () => {
+    setIsLoading(true);
+
     try {
       const responseValidation = await signUpFormValidation(formParams);
       if(responseValidation?.error) return Alert.alert(responseValidation.title, responseValidation.message, [{text: 'Accept', style: 'cancel'}])
@@ -35,6 +40,8 @@ const SignUpForm = () => {
     } catch (error) {
       const { errors } = error.response.data;
       Alert.alert('Error del servidor', errors.email[0], [{text: 'Accept', style: 'cancel'}]);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -76,13 +83,17 @@ const SignUpForm = () => {
           value={formParams.password_confirmation}
         />
       </View>
-      <View className="items-center mt-5">
-        <CustomButton
-          title="Registrarme"
-          color="green"
-          onPress={handleFormSubmit}
-        />
-      </View>
+      {
+        isLoading
+        ? <CustomLoadingLabel />
+        : <View className="items-center mt-5">
+            <CustomButton
+              title="Registrarme"
+              color="green"
+              onPress={handleFormSubmit}
+            />
+          </View>
+      }
     </CustomUserForm>
   )
 }
