@@ -1,15 +1,11 @@
-import { FlatList, Text } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from "react-redux";
 
-import IncomeScreenButton from "../components/incomeScreen/IncomeScreenButton";
-import IncomeItem from "../components/incomeScreen/IncomeItem";
-import IncomeScreenCharts from "../components/incomeScreen/IncomeScreenCharts";
 import { useEffect, useState } from "react";
-import { getUserIncome, getTotalIncome } from "../services/revenueService";
+import { getUserIncome } from "../services/revenueService";
 import CustomLoadingLabel from "../components/common/CustomLoadingLabel";
-import IncomeTotal from "../components/incomeScreen/IncomeTotal";
+import IncomeScreenBody from "../components/incomeScreen";
 
 const IncomeScreen = () => {
   const booleanState = useSelector(state => state.booleanSlice.booleanState);
@@ -19,11 +15,12 @@ const IncomeScreen = () => {
 
   useEffect(() => {
     const fetchIncome = async () => {
+      setIsLoading(true);
+
       try {
         const response = await getUserIncome();
         setRevenues(response.data.revenues);
-        const total = await getTotalIncome();
-        setTotal(total.data.total);
+        setTotal(response.data.total);
       } catch (error) {
         console.log(error);
       } finally {
@@ -34,29 +31,13 @@ const IncomeScreen = () => {
     fetchIncome();
   }, [booleanState]);
 
-  if(isLoading) return (
+  return (
     <LinearGradient colors={['#000000', '#212A3E']} className="flex-1">
-      <CustomLoadingLabel />
-    </LinearGradient>
-  )
-
-  return(
-    <LinearGradient colors={['#000000', '#212A3E']} className="flex-1">
-      <IncomeScreenButton />
       {
-        revenues.length > 0
-        ? <>
-            <IncomeTotal total={total} />
-            <FlatList
-              data={revenues}
-              renderItem={({item}) => {return <IncomeItem item={item} />}}
-              keyExtractor={item => item.id}
-              ListFooterComponent={<IncomeScreenCharts />}
-            />
-        </>
-        : <Text className="text-white text-center font-semibold text-lg mt-10">Aún no tienes ingresos guardados.</Text>
+        isLoading
+        ? <CustomLoadingLabel title="Obteniendo ingresos" />
+        : <IncomeScreenBody revenues={revenues} total={total} />
       }
-
       <StatusBar style="light" />
     </LinearGradient>
   )

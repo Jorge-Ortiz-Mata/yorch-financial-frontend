@@ -15,6 +15,8 @@ const ExpenseScreen = () => {
 
   useEffect(() => {
     const fetchIncome = async () => {
+      setIsLoading(true);
+
       try {
         const response = await getUserExpense();
         setExpenes(response.data.expenses);

@@ -28,16 +28,6 @@ export const getUserIncome = async () => {
   });
 }
 
-export const getTotalIncome = async () => {
-  const { authToken } = await getAuthToken();
-
-  return await axios.get(`${YORCH_FINANCIAL_BACKEND_URL}/v1/revenues/total.json`, {
-    headers: {
-      "Authorization": authToken
-    }
-  });
-}
-
 export const deleteUserIncome = async (id) => {
   const { authToken } = await getAuthToken();
 
