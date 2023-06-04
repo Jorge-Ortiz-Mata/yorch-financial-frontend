@@ -1,7 +1,7 @@
 import ExpenseList from "./ExpenseList";
-import NoExpensesMessage from "./NoExpensesMessage";
 import ExpensesHeader from "./ExpensesHeader";
 import CustomTotalMessage from "../common/CustomTotalMessage";
+import CustomNoExpensesMessage from "../common/CustomNoItemsMessage";
 
 const ExpenseScreenBody = ({expenses, total}) => {
 
@@ -16,7 +16,7 @@ const ExpenseScreenBody = ({expenses, total}) => {
       {
         expenses.length > 0
         ? <ExpenseList expenses={expenses} />
-        : <NoExpensesMessage />
+        : <CustomNoExpensesMessage title="Aún no tienes gastos guardados." />
       }
     </>
   )
