@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 
-const ExpenseScreenTitle = () => {
+const ExpenseTitle = () => {
 
   return(
-    <View className="items-center justify-center mt-5">
+    <View className="items-center justify-center my-5">
       <Text className="text-white text-4xl font-bold">Mis gastos</Text>
     </View>
   )
 }
 
-export default ExpenseScreenTitle;
+export default ExpenseTitle;

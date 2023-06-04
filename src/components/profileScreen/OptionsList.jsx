@@ -27,7 +27,7 @@ const OptionsList = () => {
   }
 
   return(
-    <View className="w-full">
+    <View className="w-full mt-10">
       <OptionItem
         name="Editar Perfil"
         color="blue"
