@@ -1,7 +1,5 @@
-import { Alert } from "react-native";
-import { FlatList } from "react-native";
+import { Alert, FlatList } from "react-native";
 import { useDispatch } from "react-redux";
-
 import { deleteUserExpense } from "../../services/expenseService";
 import { booleanActions } from "../../store/booleanSlice";
 import CustomItemCard from "../common/CustomItemCard";
@@ -9,7 +7,7 @@ import CustomItemCard from "../common/CustomItemCard";
 const ExpenseList = ({ expenses }) => {
   const dispatch = useDispatch();
 
-  const deleteAndUpdateIncome = async (id) => {
+  const deleteAndUpdateExpense = async (id) => {
     await deleteUserExpense(id);
     dispatch(booleanActions.updateState());
   }
@@ -22,7 +20,7 @@ const ExpenseList = ({ expenses }) => {
       },
       {
         text: 'Aceptar',
-        onPress: async () => deleteAndUpdateIncome(item.id)
+        onPress: async () => deleteAndUpdateExpense(item.id)
       }
     ]);
   }

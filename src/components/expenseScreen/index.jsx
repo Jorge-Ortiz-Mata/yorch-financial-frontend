@@ -8,8 +8,7 @@ const ExpenseScreenBody = ({expenses, total}) => {
   const navigation = useNavigation();
 
   const handleOnChangeScreen = () => {
-    console.log("NewExpenseScreen....")
-    // navigation.navigate("NewIncomeScreen");
+    navigation.navigate("NewExpenseScreen");
   }
 
   return(

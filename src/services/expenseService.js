@@ -8,6 +8,16 @@ const getAuthToken = async () => {
   return { authToken: authToken, id: jwtDecode(authToken).id }
 }
 
+export const createExpense = async (params) => {
+  const { authToken } = await getAuthToken();
+
+  return await axios.post(`${YORCH_FINANCIAL_BACKEND_URL}/v1/expenses`, params, {
+    headers: {
+      "Authorization": authToken,
+    }
+  });
+}
+
 export const getUserExpense = async () => {
   const { authToken } = await getAuthToken();
 

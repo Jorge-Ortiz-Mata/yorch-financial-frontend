@@ -26,6 +26,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 import ExpenseScreen from "./screens/ExpenseScreen";
 import SurveyScreen from "./screens/SurveyScreen";
 import InviteScreen from "./screens/InviteScreen";
+import NewExpenseScreen from "./screens/NewExpenseScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -82,6 +83,7 @@ const Index = () => {
         <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
         <Stack.Screen name="InviteScreen" component={InviteScreen} />
         <Stack.Screen name="NewIncomeScreen" component={NewIncomeScreen} />
+        <Stack.Screen name="NewExpenseScreen" component={NewExpenseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

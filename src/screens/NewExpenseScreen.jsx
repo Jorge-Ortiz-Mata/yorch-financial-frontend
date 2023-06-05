@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useFormSubmit } from "../hooks/useFormSubmit";
 import { useNavigation } from '@react-navigation/native';
+import { useFormSubmit } from '../hooks/useFormSubmit';
 import CustomFormItem from '../components/common/CustomFormItem';
 
-const NewIncomeScreen = () => {
-  const { saveIncome } = useFormSubmit();
+const NewExpenseScreen = () => {
   const navigation = useNavigation();
+  const { saveExpense } = useFormSubmit();
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [formParams, setFormParams] = useState({
@@ -19,7 +19,7 @@ const NewIncomeScreen = () => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: 'Añadir ingreso',
+      title: 'Añadir gasto',
       headerTintColor: 'white',
       headerStyle: { backgroundColor: "#000000" },
     });
@@ -33,7 +33,7 @@ const NewIncomeScreen = () => {
 
   const handleOnSubmit = async () => {
     setIsLoading(true);
-    const response = await saveIncome("revenue", formParams, "Ingreso añadido", "Su nuevo ingreso ha sido añadido correctamente")
+    const response = await saveExpense("expense", formParams, "Gasto añadido", "Su nuevo gasto ha sido añadido correctamente")
     setIsLoading(false);
 
     if(response.status === 422){
@@ -49,7 +49,7 @@ const NewIncomeScreen = () => {
         <LinearGradient colors={['#000000', '#212A3E']} className="h-screen items-center py-10">
           <CustomFormItem
             item={formParams}
-            formTitle="Añadir nuevo ingreso"
+            formTitle="Añadir nuevo gasto"
             isLoading={isLoading}
             onChangeText={handleOnChangeText}
             onSubmit={handleOnSubmit}
@@ -62,4 +62,4 @@ const NewIncomeScreen = () => {
   )
 }
 
-export default NewIncomeScreen;
+export default NewExpenseScreen;
