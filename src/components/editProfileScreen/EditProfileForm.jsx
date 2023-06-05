@@ -42,8 +42,8 @@ const EditProfileForm = () => {
   }
 
   return(
-    <ScrollView className="w-full">
-      <View className="m-5">
+    <ScrollView className="w-full px-5">
+      <View className="mt-5">
         <CustomTextLabel title="Nombre(s)" />
         <CustomTextInput
           name="name"
@@ -52,7 +52,9 @@ const EditProfileForm = () => {
           secureTextEntry={false}
           onChange={handleChange}
         />
+      </View>
 
+      <View className="mt-5">
         <CustomTextLabel title="Apellido Paterno" />
         <CustomTextInput
           name="paternal_name"
@@ -62,6 +64,7 @@ const EditProfileForm = () => {
           onChange={handleChange}
         />
 
+      <View className="mt-5">
         <CustomTextLabel title="Apellido Materno" />
         <CustomTextInput
           name="maternal_name"
@@ -70,18 +73,24 @@ const EditProfileForm = () => {
           secureTextEntry={false}
           onChange={handleChange}
         />
+      </View>
 
+      <View className="mt-5">
         <CustomTextLabel title="Sexo" />
         <CustomSelectInput
           name="sex"
           onChange={handleChange}
         />
+      </View>
 
+      <View className="mt-5">
         <CustomDatePicker
           name="date_of_birth"
           onChange={handleChange}
         />
+      </View>
 
+      <View className="mt-5">
         <CustomTextLabel title="Puesto actual" />
         <CustomTextInput
           name="job_title"
@@ -90,7 +99,9 @@ const EditProfileForm = () => {
           secureTextEntry={false}
           onChange={handleChange}
         />
+      </View>
 
+      <View className="mt-5">
         <CustomTextLabel title="Acerca de mi" />
         <CustomTextArea
           name="summary"
@@ -99,6 +110,7 @@ const EditProfileForm = () => {
           secureTextEntry={false}
           onChange={handleChange}
         />
+      </View>
 
         <View className="items-center mt-5 mb-10">
           <CustomButton

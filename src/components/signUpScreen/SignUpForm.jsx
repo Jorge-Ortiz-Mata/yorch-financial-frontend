@@ -47,7 +47,7 @@ const SignUpForm = () => {
 
   return(
     <CustomUserForm>
-      <View className="flex flex-col">
+      <View className="flex flex-col mt-5">
         <CustomTextLabel
           title="Email:"
         />
@@ -59,7 +59,7 @@ const SignUpForm = () => {
           value={formParams.email}
         />
       </View>
-      <View className="flex flex-col">
+      <View className="flex flex-col mt-5">
         <CustomTextLabel
           title="Password:"
         />
@@ -71,7 +71,7 @@ const SignUpForm = () => {
           value={formParams.password}
         />
       </View>
-      <View className="flex flex-col">
+      <View className="flex flex-col mt-5">
         <CustomTextLabel
           title="Password Confirmation:"
         />
@@ -83,17 +83,17 @@ const SignUpForm = () => {
           value={formParams.password_confirmation}
         />
       </View>
+      <View className="items-center mt-5">
       {
         isLoading
         ? <CustomLoadingLabel />
-        : <View className="items-center mt-5">
-            <CustomButton
-              title="Registrarme"
-              color="green"
-              onPress={handleFormSubmit}
-            />
-          </View>
-      }
+        : <CustomButton
+            title="Registrarme"
+            color="green"
+            onPress={handleFormSubmit}
+          />
+          }
+      </View>
     </CustomUserForm>
   )
 }

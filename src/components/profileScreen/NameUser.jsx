@@ -12,7 +12,7 @@ const NameUser = ({profile}) => {
   }
 
   return(
-    <View className="w-3/6 justify-center items-center my-5">
+    <View className="w-full px-5 justify-center items-center my-5">
       <Text className="text-white font-bold text-2xl">{fullName.length > 0 ? fullName : '---'}</Text>
       <Text className="text-white font-semibold text-base">{profile.job_title ? profile.job_title : '---'}</Text>
     </View>

@@ -14,7 +14,7 @@ const ExpenseScreenBody = ({expenses, total}) => {
   return(
     <>
       <CustomScreenHeader
-        screenTitle="Mis gasto"
+        screenTitle="Mis gastos"
         btnTitle="Añadir gasto"
         onPress={handleOnChangeScreen}
         color="red"
