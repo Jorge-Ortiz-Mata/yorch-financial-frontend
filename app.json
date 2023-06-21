@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Yorch Financial",
-    "slug": "Yorch Financial",
+    "slug": "yorch-financial-frontend",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/small-logo.png",
