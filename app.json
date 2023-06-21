@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "yorch-financial-frontend",
-    "slug": "yorch-financial-frontend",
+    "name": "Yorch Financial",
+    "slug": "Yorch Financial",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LogoAppYorchFinance.png",
+    "icon": "./assets/small-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash-yorch-financial.png",
+      "image": "./assets/screen-splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoAppYorchFinance.png",
+        "foregroundImage": "./assets/small-logo.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [

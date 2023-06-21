@@ -3,16 +3,16 @@ import { View, Text } from "react-native";
 const Box = ({icon, value, description, color}) => {
   let boxStyle;
 
-  if(color === "orange"){
-    boxStyle = "bg-orange-100 rounded-xl py-5 px-8 items-center justify-center";
+  if(color === "cyan"){
+    boxStyle = "bg-cyan-200 rounded-xl py-5 px-8 items-center justify-center";
   }
 
-  if(color === "cyan"){
-    boxStyle = "bg-cyan-100 rounded-xl py-5 px-8 items-center justify-center";
+  if(color === "green"){
+    boxStyle = "bg-green-200 rounded-xl py-5 px-8 items-center justify-center";
   }
 
   if(color === "red"){
-    boxStyle = "bg-red-100 rounded-xl py-5 px-8 items-center justify-center";
+    boxStyle = "bg-red-200 rounded-xl py-5 px-8 items-center justify-center";
   }
 
   if(color === "purple"){

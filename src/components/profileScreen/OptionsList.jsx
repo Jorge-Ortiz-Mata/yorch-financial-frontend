@@ -27,14 +27,14 @@ const OptionsList = () => {
   }
 
   return(
-    <View className="w-full mt-10">
+    <View className="w-full mt-10 flex-1">
       <OptionItem
         name="Editar Perfil"
         color="blue"
         icon={<Feather name="settings" size={24} color="blue" />}
         onPressOption={() => navigation.navigate('EditProfileScreen')}
       />
-      <OptionItem
+      {/* <OptionItem
         name="Invitar a un amigo"
         color="green"
         icon={<FontAwesome5 name="users" size={24} color="green" />}
@@ -45,7 +45,7 @@ const OptionsList = () => {
         color="yellow"
         icon={<FontAwesome name="star" size={24} color="yellow" />}
         onPressOption={() => navigation.navigate('SurveyScreen')}
-      />
+      /> */}
       <OptionItem
         name="Cerrar sesión"
         color="red"
